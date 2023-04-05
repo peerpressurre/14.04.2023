@@ -127,7 +127,7 @@ int mystrlen(string str)
 
 int main()
 {
-    File* file = new File("text.txt");
+    File* file = new File("text2.txt");
     file->Write("If he's a serial killer, then whats the worst\nThat can happen to a girl who's already hurt\nI'm already hurt");
     string text;
     int counter = 0;
