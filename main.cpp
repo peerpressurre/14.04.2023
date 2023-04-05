@@ -59,27 +59,6 @@ public:
         open_mode = 0;
     }
     //Actions 
-    bool Write(string text, bool append = false) {
-        if (open_mode != ios::out && append == false)
-        {
-            open_mode = ios::out;
-        }
-        else if (open_mode != ios::app && append == true)
-        {
-            open_mode = ios::app;
-        }
-        file.open(path, open_mode);
-        if (file.is_open())
-        {
-            file << text << endl;
-            this->CloseFile();
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-   
     bool Load(string& text) {
         string buf;
         if (open_mode != ios::in)
