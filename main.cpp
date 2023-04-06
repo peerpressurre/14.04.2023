@@ -172,9 +172,5 @@ int main()
     file2->Write(text3);
     cout << "Original code:\n" << text1 << endl;
     cout << "Code with comments removed:\n" << text3 << endl;
-    /*for (int k = 0; k < j; k++)
-    {
-        cout << text2[k];
-    }*/
     return 0;
 }
