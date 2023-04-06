@@ -135,7 +135,7 @@ int main()
     string text1, text2, merged[300];
     file1->Write("You used to call me on my cell phone\nLate night when you need my love\nCall me on my cell phone\nLate night when you need my love");
     file1->Load(text1);
-    file2->Write("I know when that hotline bling\nThat could only mean one thing\n\nI know when that hotline bling\nThat could only mean one thing");
+    file2->Write("I know when that hotline bling\nThat could only mean one thing\n\I know when that hotline bling\nThat could only mean one thing");
     file2->Load(text2);
     int i = 0, j = 0, m = 0;
     while (i < mystrlen(text1) || j < mystrlen(text2))
