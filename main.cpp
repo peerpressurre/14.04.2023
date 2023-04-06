@@ -95,7 +95,7 @@ public:
 
 int main()
 {
-    File* file = new File;
+    File* file = new File("text.txt");
     string text;
     file->Load(text);
     cout << text << endl;
