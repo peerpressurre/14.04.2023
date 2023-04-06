@@ -1,0 +1,18 @@
+#include <iostream>  // include the input/output stream library
+
+int main() {
+    std::string name;  // declare a string variable to store the user's name
+
+    /*
+     * Prompt the user to enter their name and read the input into the name variable.
+     */
+    std::cout << "Please enter your name: ";
+    std::cin >> name;
+
+    /*
+     * Output a personalized greeting to the user.
+     */
+    std::cout << "Hello, " << name << "! Nice to meet you." << std::endl;
+
+    return 0;  // indicate successful program termination
+}
