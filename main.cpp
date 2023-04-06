@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
+
 using namespace std;
 using std::cout;
 using std::istream;
@@ -162,9 +164,16 @@ int main()
         text2[j] = text1[i];
         i++;
     }
-
+    stringstream ss;
+    for (int k = 0; k < j; k++)
+    {
+        ss << text2[k];
+        if (k < j - 1) ss << "\n";
+    }
+    string text2_str = ss.str();
+    file2->Write(text2_str);
     cout << "Original code:\n" << text1 << endl;
-    cout << "Code with comments removed:\n" << endl;
+    cout << "Code with comments removed:" << endl;
     for (int k = 0; k < j; k++)
     {
         cout << text2[k];
