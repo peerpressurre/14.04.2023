@@ -129,15 +129,18 @@ int main()
 {
     File* file = new File("nums.txt");
     string text; 
-    int max = 0;
+    char c;
+    int max = 0, num = 0;
     file->Load(text);
     for (size_t i = 0; i < mystrlen(text); i++)
     {
-        if (isdigit(text[i]))
+        c = text[i];
+        if (c != ' ' && c != '\n' && c != ',')
         {
-            if (static_cast<int>(text[i]) > max)
+            num = c - '0';
+            if (num > max)
             {
-                max = static_cast<int>(text[i]);
+                max = num;
             }
         }
     }
