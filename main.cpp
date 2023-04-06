@@ -138,17 +138,17 @@ int main()
     {
         if (text1[i] == '/')
         {
-            if (text1[i+1] == '/')
+            if (text1[i + 1] == '/')
             {
                 while (text1[i] != '\n')
                 {
                     i++;
                 }
-            }  
+            }
         }
         if (text1[i] == '/')
         {
-            if (text1[i+1] == '*')
+            if (text1[i + 1] == '*')
             {
                 i++;
                 while (text1[i] != '/')
@@ -159,24 +159,22 @@ int main()
                 {
                     i++;
                 }
-            }  
+            }
         }
         text2[j] = text1[i];
         i++;
     }
-    stringstream ss;
+    string text3;
     for (int k = 0; k < j; k++)
     {
-        ss << text2[k];
-        if (k < j - 1) ss << "\n";
+        text3 += text2[k];
     }
-    string text2_str = ss.str();
-    file2->Write(text2_str);
+    file2->Write(text3);
     cout << "Original code:\n" << text1 << endl;
-    cout << "Code with comments removed:" << endl;
-    for (int k = 0; k < j; k++)
+    cout << "Code with comments removed:\n" << text3 << endl;
+    /*for (int k = 0; k < j; k++)
     {
         cout << text2[k];
-    }
+    }*/
     return 0;
 }
