@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <map>
+#include <iomanip>
 using namespace std;
 using std::cout;
 using std::istream;
@@ -128,6 +130,34 @@ int mystrlen(string str)
 int main()
 {
     File* file = new File("symbols.txt");
-    
+    string text;
+    file->Load(text);
+
+    string alph = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    int dot, coma, col, semicol, counter;
+    for (size_t i = 0; i < mystrlen(text); i++)
+    {
+        if (text[i] != ' ')
+        {
+            counter++;
+        }
+        if (text[i] == '.')
+        {
+            dot++;
+        }
+        else if (text[i] == ',')
+        {
+            coma++;
+        }
+        else if (text[i] == ':')
+        {
+            col++;
+        }
+        else if (text[i] == ';')
+        {
+            semicol++;
+        }
+        
+    }
     return 0;
 }
