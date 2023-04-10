@@ -1,163 +1,36 @@
 #include <iostream>
 #include <fstream>
-#include <string>
 #include <map>
 #include <iomanip>
-using namespace std;
-using std::cout;
-using std::istream;
-using std::ostream;
-using std::fstream;
-using std::ios_base;
-#define next_line { cout << endl; }
-
-struct File
-{
-private:
-    string path;
-    fstream file;
-    ios_base::open_mode open_mode;
-public:
-    //Setters & Getters
-    void setPath(string path)
-    {
-        this->path = path;
-    }
-
-    void setOpenMode(ios_base::open_mode open_mode)
-    {
-        this->open_mode = open_mode;
-    }
-
-    ios_base::open_mode getOpenMode()
-    {
-        return open_mode;
-    }
-
-    string getPath()
-    {
-        return path;
-    }
-
-
-    //Constructors & Destructor 
-    File()
-    {
-        setPath("text.txt");
-        setOpenMode(ios::out);
-    }
-    File(string path) : File()
-    {
-        setPath(path);
-    }
-    File(string path, ios_base::open_mode open_mode) : File(path)
-    {
-        setOpenMode(open_mode);
-    }
-    ~File()
-    {
-        path.clear();
-        file.close();
-        open_mode = 0;
-    }
-    //Actions 
-    bool Write(string text, bool append = false) {
-        if (open_mode != ios::out && append == false)
-        {
-            open_mode = ios::out;
-        }
-        else if (open_mode != ios::app && append == true)
-        {
-            open_mode = ios::app;
-        }
-        file.open(path, open_mode);
-        if (file.is_open())
-        {
-            file << text << endl;
-            this->CloseFile();
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    bool Load(string& text) {
-        string buf;
-        if (open_mode != ios::in)
-        {
-            open_mode = ios::in;
-        }
-        file.open(path, open_mode);
-        if (file.is_open())
-        {
-            while (getline(file, buf))
-            {
-                text += buf;
-                text += "\n";
-            }
-            this->CloseFile();
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    bool CreateFile() {
-        if (open_mode != ios::out)
-        {
-            open_mode = ios::out;
-        }
-        file.open(path, open_mode);
-        return (file.is_open()) ? true : false;
-    }
-    void CloseFile() {
-        this->file.close();
-    }
-};
-
-int mystrlen(string str)
-{
-    int i = 0;
-    int counter = 0;
-    while (str[i] != '\0')
-    {
-        counter++;
-        i++;
-    }
-    return counter;
-}
 
 int main()
 {
-    File* file = new File("symbols.txt");
-    string text;
-    file->Load(text);
+    std::ifstream file("example.txt");
+    std::map<char, int> char_count;
 
-    string alph = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    int dot, coma, col, semicol, counter;
-    for (size_t i = 0; i < mystrlen(text); i++)
+    // Count each character in the file
+    char c;
+    while (file.get(c))
     {
-        if (text[i] != ' ')
-        {
-            counter++;
-        }
-        if (text[i] == '.')
-        {
-            dot++;
-        }
-        else if (text[i] == ',')
-        {
-            coma++;
-        }
-        else if (text[i] == ':')
-        {
-            col++;
-        }
-        else if (text[i] == ';')
-        {
-            semicol++;
-        }
-        
+        if (char_count.find(c) != char_count.end())
+            char_count[c]++;
+        else
+            char_count[c] = 1;
     }
+
+    // Calculate the total number of characters in the file
+    int total_count = 0;
+    for (auto& p : char_count)
+        total_count += p.second;
+
+    // Print the statistics
+    std::cout << "Character statistics:\n";
+    for (auto& p : char_count)
+    {
+        std::cout << "'" << p.first << "': " << p.second << " ("
+            << std::fixed << std::setprecision(2)
+            << static_cast<double>(p.second) / total_count * 100 << "%)\n";
+    }
+
     return 0;
 }
